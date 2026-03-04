@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVOGAL-HAIR | Scientific Natural Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Variabel Warna */
+        :root {
+            --primary-green: #4a5d23; 
+            --light-bg: #fdfbf7; 
+            --dark-text: #2c2c2c;
+            --accent-brown: #8b5a2b; 
+            --badge-color: #d9534f; 
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+        }
+        a { text-decoration: none; color: inherit; }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap; 
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-green);
+            letter-spacing: 2px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a {
+            margin: 0 15px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-green); }
+        .btn-buy {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-buy:hover { background-color: var(--accent-brown); }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-green);
+            margin: 3px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-btn-mobile { display: none; }
+
+       .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 8%;
+            /* Ganti link panjang dengan nama file Anda di dalam url() */
+            background: linear-gradient(rgba(253, 251, 247, 0.6), rgba(253, 251, 247, 0.6)), url('background.png') center/cover;
+            min-height: 80vh;
+        }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero-content p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; color: #555; }
+        .hero-content .btn-large {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .hero-content .btn-large:hover { background-color: var(--accent-brown); }
+
+        /* Ingredients Section */
+        .ingredients { padding: 80px 8%; text-align: center; }
+        .ingredients h2 { font-size: 2.5rem; margin-bottom: 50px; }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: white; padding: 30px; border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); }
+        .card h3 { margin: 15px 0; font-size: 1.5rem; }
+        .card p { font-size: 0.95rem; color: #666; }
+        .icon-circle {
+            width: 80px; height: 80px; background-color: var(--light-bg); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; margin: 0 auto; font-size: 2rem;
+        }
+
+        .products { background-color: #f4f7f2; padding: 80px 8%; text-align: center; }
+        .products h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .product-flex {
+            display: flex; justify-content: center; gap: 30px; margin-top: 50px;
+            flex-wrap: wrap; align-items: stretch;
+        }
+        .product-item {
+            background: white; padding: 40px 30px; border-radius: 20px; width: 320px;
+            text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex;
+            flex-direction: column; position: relative;
+        }
+        .product-item.best-seller { border: 2px solid var(--primary-green); transform: scale(1.05); }
+        .badge {
+            position: absolute; top: -15px; right: -15px; background-color: var(--badge-color);
+            color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.85rem;
+            font-weight: 600; box-shadow: 0 4px 10px rgba(217, 83, 79, 0.4);
+        }
+        .product-item h3 { font-size: 1.4rem; margin-bottom: 10px; min-height: 50px;}
+        .price { font-size: 1.5rem; font-weight: 600; color: var(--accent-brown); margin-bottom: 15px; display: block;}
+        .product-item p { margin-bottom: 25px; color: #555; font-size: 0.95rem; flex-grow: 1; }
+        .product-item .btn-buy { width: 100%; margin-top: auto; }
+
+        .data-section { padding: 80px 8%; background-color: var(--primary-green); color: white; text-align: center; }
+        .data-section h2 { color: white; font-size: 2.2rem; margin-bottom: 20px; }
+        .data-text { font-size: 1.2rem; max-width: 800px; margin: 0 auto; font-weight: 300; }
+
+
+        footer { background-color: #1a1a1a; color: white; text-align: center; padding: 40px 8%; }
+        footer p { opacity: 0.7; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            .menu-toggle { display: flex; } 
+            .desktop-btn { display: none; } 
+            
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+            .nav-links.active {
+                display: flex; 
+            }
+            .nav-links a { margin: 10px 0; font-size: 1.1rem; }
+            .nav-btn-mobile { display: inline-block; margin-top: 10px; width: 80%; }
+            
+            .product-item.best-seller { transform: scale(1); }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">AVOGAL-HAIR</div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav class="nav-links" id="nav-links">
+            <a href="#home">Beranda</a>
+            <a href="#ingredients">Bahan Rahasia</a>
+            <a href="#products">Produk</a>
+            <a href="#products" class="btn-buy nav-btn-mobile">Beli Sekarang</a>
+        </nav>
+        
+        <a href="#products" class="btn-buy desktop-btn" style="padding: 10px 20px;">Beli Sekarang</a>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Not just natural.<br>It's scientific.</h1>
+            <p>Solusi komprehensif untuk rambut lepek, rontok, dan kulit kepala berketombe di iklim tropis. Diformulasikan dengan teknologi <i>Low-Temperature Infunsion</i>.</p>
+            <a href="#products" class="btn-large">Temukan Solusinya</a>
+        </div>
+    </section>
+
+    <section class="ingredients" id="ingredients">
+        <h2>Rahasia Formula "Duo Sehat"</h2>
+        <div class="grid-3">
+            <div class="card">
+                <div class="icon-circle">🌿</div>
+                <h3>Daun Galinggang</h3>
+                <p>Ekstrak Cassia alata sebagai agen antifungi alami yang kuat. Memutus siklus hidup jamur penyebab ketombe dan menyeimbangkan pH kulit kepala tanpa bahan kimia keras.</p>
+            </div>
+            <div class="card">
+                <div class="icon-circle">🥑</div>
+                <h3>Minyak Alpukat</h3>
+                <p>Kaya akan Omega-3 dan Vitamin E. Menyusup ke dalam celah kutikula rambut yang rusak untuk memberikan hidrasi mendalam (deep hydration) dari dalam korteks.</p>
+            </div>
+            <div class="card">
+                <div class="icon-circle">🌰</div>
+                <h3>Minyak Kemiri</h3>
+                <p>Diolah dengan teknik Low-Temperature Infusion untuk menjaga nutrisi. Menguatkan akar, merangsang pertumbuhan, dan memberikan kilau hitam alami.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <h2>Pilih Perawatan Rambutmu</h2>
+        <p>Bebas Paraben. Bebas Sulfat. Anti-Lepek.</p>
+        
+        <div class="product-flex">
+            <div class="product-item">
+                <h3>Avogal Hair Oil (60ml)</h3>
+                <span class="price">Rp 55.000</span>
+                <p>Serum <i>dry-oil</i> tanpa bilas. Diperkaya ekstrak alpukat dan kemiri. Super ringan, encer, dan langsung menyerap untuk mengunci kelembapan tanpa sisa lengket di tangan maupun rambut.</p>
+                <a href="https://shopee.co.id" target="_blank" class="btn-buy">Beli Hair Oil</a>
+            </div>
+
+            <div class="product-item best-seller">
+                <div class="badge">Lebih Hemat!</div>
+                <h3>Paket "Duo Sehat"</h3>
+                <span class="price">Rp 90.000</span>
+                <p><b>Perawatan Maksimal!</b> Dapatkan 1 pcs Intense Mask (200gr) + 1 pcs Hair Oil (60ml). Solusi ganda untuk atasi jamur ketombe sekaligus memperbaiki batang rambut yang rusak secara menyeluruh.</p>
+                <a href="https://shopee.co.id" target="_blank" class="btn-buy">Beli Paket Duo</a>
+            </div>
+
+            <div class="product-item">
+                <h3>Avogal-Intense Mask (200gr)</h3>
+                <span class="price">Rp 55.000</span>
+                <p>Masker bilas dengan tekstur krim lembut. Mengandung ekstrak Daun Galinggang murni untuk memberikan hidrasi intensif, menyehatkan kulit kepala, dan memberantas ketombe.</p>
+                <a href="https://shopee.co.id" target="_blank" class="btn-buy">Beli Hair Mask</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="data-section">
+        <h2>Didukung oleh Data Konsumen</h2>
+        <p class="data-text">Berdasarkan riset kami terhadap Gen-Z, <b>98% responden</b> setuju dan sangat tertarik untuk mencoba khasiat inovatif Daun Galinggang & Alpukat. Konsumen menginginkan produk yang bebas kimia keras, dan kami mendengarkan Anda.</p>
+    </section>
+
+    <footer>
+        <h2 style="color: white; margin-bottom: 10px;">AVOGAL-HAIR</h2>
+        <p>Scientific Care for Tropical Hair.</p>
+        <p style="margin-top: 30px;">&copy; 2026 Tim P2MW Avogal-Hair. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
